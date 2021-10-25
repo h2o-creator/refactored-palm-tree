@@ -1,6 +1,8 @@
 import {
     _getUsers,
-    _getQuestions
+    _getQuestions,
+    _saveQuestion,
+    _saveQuestionAnswer,
 } from './_DATA'
 
 export async function getInitialData() {
@@ -17,4 +19,12 @@ export async function getInitialData() {
     } catch (error) {
         return console.log('Error reading data', error)
     }    
+}
+
+export function saveQuestion(question) {
+    return _saveQuestion(question)
+}
+
+export function saveQuestionAnswer(questionAnswer) {
+    return _saveQuestionAnswer(questionAnswer)
 }
