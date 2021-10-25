@@ -1,10 +1,19 @@
 //Source: https://github.com/udacity/reactnd-project-would-you-rather-starter
+//Modified by Abdelhady
+/*
+ * Changelog 25/10/2021:
+ *  
+ */
+
+import squareicon from 'squareicon'
+import SparkMD5 from 'spark-md5'
+import standard from 'randomcolor'
 
 let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: ,
+    avatarURL: generateUAvatar('sarahedo'),
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -16,7 +25,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: ,
+    avatarURL: generateUAvatar('tylermcginnis'),
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -26,7 +35,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: ,
+    avatarURL: generateUAvatar('johndoe'),
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -119,6 +128,18 @@ let questions = {
 
 function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
+function generateUAvatar (id) {
+  let url 
+  squareicon({
+    id,
+    hasher: SparkMD5.hash,
+    scheme: standard
+  }, (rej, res) => {
+    url = res
+  })
+  return url
 }
 
 export function _getUsers () {
