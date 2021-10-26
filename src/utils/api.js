@@ -5,20 +5,20 @@ import {
     _saveQuestionAnswer,
 } from './_DATA'
 
-export async function getInitialData() {
-    try {
-        const data = await Promise.all([
-            _getUsers(),
-            _getQuestions(),
-        ])
-        const [users, questions] = data
-        return [
+export function getInitialData() {
+    return Promise.all([
+        _getUsers(),
+        _getQuestions(),
+    ])
+    .then(([users, questions]) => (
+        {
             users,
-            questions
-        ]
-    } catch (error) {
-        return console.log('Error reading data', error)
-    }    
+            questions,
+        }
+    ))
+    .catch((error) => (
+        console.log('Error reading data', error)
+    ))
 }
 
 export function saveQuestion(question) {
