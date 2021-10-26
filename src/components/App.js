@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { getInitialData } from '../utils/api'
 
-class App extends Component {
-  componentDidMount() {
-	console.log(getInitialData())
-  }
+function App() {
+	useEffect(() => {
+		console.log(getInitialData())
+		return () => {
+			console.log('unmount')
+		}
+	})
 
-  render() {
 	return (
 		<div>
 			refactored-palm-tree
 		</div>
-	  );
-  }
+	);
 }
 
 export default App;
