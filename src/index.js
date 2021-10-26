@@ -1,12 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import ConnectedApp from './components/App'
+import reportWebVitals from './reportWebVitals'
+import middleware from './middleware'
+import reducers from './reducers'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+const store = createStore(reducers, middleware)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ConnectedApp />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

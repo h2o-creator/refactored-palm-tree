@@ -1,19 +1,28 @@
-import React, { useEffect } from 'react'
-import { getInitialData } from '../utils/api'
+import React, { useLayoutEffect } from 'react'
+import { connect } from 'react-redux'
+import handleReceiveInitialData from '../actions/receiveInitialData'
+import LoadingBar from 'react-redux-loading-bar'
 
-function App() {
-	useEffect(() => {
-		console.log(getInitialData())
-		return () => {
-			console.log('unmount')
-		}
-	})
+function App(props) {
+	const { dispatch } = props
+
+	useLayoutEffect(() => {
+		dispatch(handleReceiveInitialData())
+	}, [dispatch])
 
 	return (
 		<div>
+			<LoadingBar />
 			refactored-palm-tree
 		</div>
 	);
 }
 
-export default App;
+function mapStateToProps({ users, questions }) {
+	return {
+		users,
+		questions,
+	}
+}
+
+export default connect(mapStateToProps)(App)
