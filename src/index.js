@@ -7,13 +7,16 @@ import middleware from './middleware'
 import reducers from './reducers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 const store = createStore(reducers, middleware)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ConnectedApp />
+      <BrowserRouter>
+        <ConnectedApp />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
