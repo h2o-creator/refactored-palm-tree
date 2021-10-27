@@ -19,6 +19,8 @@ export default function handleReceiveInitialData() {
         getInitialData()
         .then(({ users, questions }) => {
             dispatch(receiveInitialData(users, questions))
+        })
+        .then(() => {
             dispatch(hideLoading())
         })
         .catch((error) => {
