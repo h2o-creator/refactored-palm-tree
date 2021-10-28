@@ -33,7 +33,7 @@ function Login({ dispatch, users }) {
             <Row>
                 <Col style={{ border: '1px solid black', margin: '0 auto', padding: '25px', textAlign: 'center' }} className='col-6'>
                     <div style={{ display: 'inline-block' }}>
-                        <FaUserCircle size='50px' />
+                        <FaUserCircle size='50px' color='deepskyblue' />
                         <br />
                         <h1>Login</h1>
                     </div>
@@ -47,7 +47,7 @@ function Login({ dispatch, users }) {
                             ))}</Form.Select>
                         </Form.Group>
                         <Col className='col-2 d-inline-block'>
-                            <Button type='submit' variant='dark'>
+                            <Button type='submit' variant='primary'>
                                 <FaArrowRight />
                             </Button>
                         </Col>
