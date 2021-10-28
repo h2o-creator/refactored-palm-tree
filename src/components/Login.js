@@ -8,8 +8,9 @@ import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
 import setAuthedUser from '../actions/setAuthedUser'
 import { FaUserCircle, FaArrowRight } from 'react-icons/fa'
+import { withRouter } from 'react-router-dom'
 
-function Login({ dispatch, users }) {
+function Login({ dispatch, users, history }) {
     const selectRef = useRef(null)
 
     function handleSubmit(e) {
@@ -17,6 +18,7 @@ function Login({ dispatch, users }) {
         const { current } = selectRef
         const { value } = current
         dispatch(setAuthedUser(value))
+        history.push('/')
     }
 
     return (
@@ -64,4 +66,4 @@ function mapStateToProps({ users }) {
     }
 }
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))
