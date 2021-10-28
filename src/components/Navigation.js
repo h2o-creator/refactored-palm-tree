@@ -20,7 +20,7 @@ function Navigation() {
             <Navbar.Collapse>
                 <Nav className='me-auto'>
                     <Container>
-                        <Nav.Link as={Link} custom className='align-middle' to='/'>
+                        <Nav.Link as={Link} className='align-middle' to='/'>
                             Home
                         </Nav.Link>
                     </Container>
