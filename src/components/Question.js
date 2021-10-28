@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 
 function Question({ author, optionOne, optionTwo, timestamp, id }) {
@@ -10,6 +10,7 @@ function Question({ author, optionOne, optionTwo, timestamp, id }) {
     const time = dateConst.toLocaleTimeString('en-US');
 
     const history = useHistory()
+    const params = useParams()
 
     return (
         <>
@@ -25,7 +26,9 @@ function Question({ author, optionOne, optionTwo, timestamp, id }) {
                     <p style={{ float: 'right' }}>{`${optionOne.votes.length} voted for the first option, ${optionTwo.votes.length} voted for the second`}</p>
                 </Card.Header>
                 <Card.Body>                    
-                    <FaArrowRight size='50px' onClick={() => history.push(`/question/${id}`)} />
+                    <button title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/question/${id}`))} disabled={params.id === id}>
+                        <FaArrowRight size='25px' />
+                    </button>
                 </Card.Body>
             </Card>
             <br />
