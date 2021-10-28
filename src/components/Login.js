@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Alert from 'react-bootstrap/Alert'
 import Container from 'react-bootstrap/Container'
@@ -22,40 +21,27 @@ function Login({ dispatch, users, history }) {
     }
 
     return (
-        <Container style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black' }} fluid>
-            <Row>
-                <Col>
-                    <h2 style={{ textAlign: 'center' }}>Hello, Guest!</h2>
-                    <Alert variant='warning'>
-                        Please login to continue!
-                    </Alert>
-                </Col>
-            </Row>
-            <br />
-            <Row>
-                <Col style={{ border: '1px solid black', margin: '0 auto', padding: '25px', textAlign: 'center' }} className='col-6'>
-                    <div style={{ display: 'inline-block' }}>
-                        <FaUserCircle size='50px' color='deepskyblue' />
+        <Container fluid>
+            <Col lg='6' style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black', textAlign: 'center' }}>
+                <FaUserCircle size='75px' color='deepskyblue' />
+                <h2 style={{ textAlign: 'center' }}>Hello, Guest!</h2>
+                <Alert variant='warning'>
+                    Please login to continue!
+                </Alert>
+                <Form onSubmit={(e) => handleSubmit(e)}>
+                    <Form.Group>
+                        <Form.Select ref={selectRef} >{users.map((user) => (
+                            <option value={user.id} key={user.id}>
+                                {user.name}
+                            </option>
+                        ))}</Form.Select>
                         <br />
-                        <h1>Login</h1>
-                    </div>
-                    <br />
-                    <Form onSubmit={(e) => handleSubmit(e)}>
-                        <Form.Group as={Col} className='d-inline-block col-10'>
-                            <Form.Select ref={selectRef} >{users.map((user) => (
-                                <option value={user.id} key={user.id}>
-                                    {user.name}
-                                </option>
-                            ))}</Form.Select>
-                        </Form.Group>
-                        <Col className='col-2 d-inline-block'>
-                            <Button type='submit' variant='primary'>
-                                <FaArrowRight />
-                            </Button>
-                        </Col>
-                    </Form>
-                </Col>
-            </Row>
+                        <Button type='submit' variant='primary'>
+                            Login <FaArrowRight />
+                        </Button>
+                    </Form.Group>
+                </Form>
+            </Col>    
         </Container>
     )
 }
