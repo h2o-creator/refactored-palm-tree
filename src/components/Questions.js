@@ -7,7 +7,9 @@ function Questions({ questionIds }) {
     return (
         <Container style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black' }} fluid>
             <h3>Would You Rather...?</h3>
-            {questionIds.map((questionId) => <ConnectedQuestion key={questionId} questionId={questionId} />)}
+            {questionIds.map((questionId) => (
+                <ConnectedQuestion key={questionId} questionId={questionId} />
+            ))}
         </Container>
     )
 }
