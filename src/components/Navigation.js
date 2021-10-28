@@ -17,16 +17,15 @@ function Navigation() {
                     <span className='align-middle'>Refactored Palm Tree</span>
                 </Container>
             </Navbar.Brand>
-            <Navbar.Collapse>
-                <ConnectedLogout />
-                <Nav>
-                    <Container>
-                        <Nav.Link as={Link} className='align-middle' to='/'>
-                            Home
-                        </Nav.Link>
-                    </Container>
-                </Nav>
-            </Navbar.Collapse>
+            <ConnectedLogout />
+            <Nav>
+                <Nav.Link as={Link} className='align-middle' to='/'>
+                    Home
+                </Nav.Link>
+                <Nav.Link as={Link} className='align-middle' to='/new-question'>
+                    New Question
+                </Nav.Link>
+            </Nav>
         </Navbar>
     )
 }
