@@ -11,7 +11,7 @@ function Question({ author, optionOne, optionTwo, timestamp }) {
         <>
             <Card style={{ padding: '20px' }}>
                 <Card.Header>
-                    <h4>{`Would you rather ${optionOne.text} `} <span style={{ textDecoration: 'underline' }}>OR</span> {` ${optionTwo.text}? `}</h4>
+                    <h4>{`Would you rather ${optionOne.text} (${optionOne.votes.length}) `} <span style={{ color: 'red' }}>||</span> {` (${optionTwo.votes.length}) ${optionTwo.text}? `}</h4>
                     <br />
                     <p className='blockquote-footer'>{`Asked by ${author} on ${date} at ${time}`}</p>
                 </Card.Header>
