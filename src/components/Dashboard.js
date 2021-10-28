@@ -6,8 +6,9 @@ import Alert from 'react-bootstrap/Alert'
 import Container from 'react-bootstrap/Container'
 import { FaHeart } from 'react-icons/fa'
 import ConnectedLogin from './Login'
+import ConnectedQuestions from './Questions'
 
-function Dashboard({ questions, authedUser }) {
+function Dashboard({ authedUser }) {
     return (
         <Container className='col-11' fluid>
             <Row>
@@ -21,10 +22,7 @@ function Dashboard({ questions, authedUser }) {
             </Row>
             <Row>
                 <Col className={`col-${authedUser === null ? '6' : '12'}`}>
-                    <Container style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black' }} fluid>
-                        <div>Questions</div>
-                        {questions.map((question) => question.text)}
-                    </Container>
+                    <ConnectedQuestions />
                 </Col>
                 {
                     (authedUser === null) && (
@@ -38,9 +36,8 @@ function Dashboard({ questions, authedUser }) {
     )
 }
 
-function mapStateToProps({ questions, authedUser }) {
+function mapStateToProps({ authedUser }) {
     return {
-        questions: Object.values(questions),
         authedUser,
     }
 }
