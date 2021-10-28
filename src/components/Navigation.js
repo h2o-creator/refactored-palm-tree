@@ -11,7 +11,7 @@ function Navigation() {
         <Navbar bg='dark' variant='dark'>
             <Navbar.Brand>
                 <Container>
-                    <FaTree color='green' style={{
+                    <FaTree color='deepskyblue' style={{
                         marginRight: '10px'
                     }} className='align-middle' />
                     <span className='align-middle'>Refactored Palm Tree</span>
