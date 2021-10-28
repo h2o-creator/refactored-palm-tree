@@ -7,12 +7,14 @@ import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.css'
 import ConnectedDashboard from './Dashboard'
 import Navigation from './Navigation'
-import { Route, Switch, useLocation, Link } from 'react-router-dom'
+import { Route, Switch, useLocation, Link, Redirect } from 'react-router-dom'
 import Footer from './Footer'
 import { FaSadTear, FaCoffee } from 'react-icons/fa'
 import ConnectedQuestionPage from './QuestionPage'
+import ConnectedLogin from './Login'
+import ConnectedNewQuestion from './NewQuestion'
 
-function App({ dispatch, loading }) {
+function App({ dispatch, loading, authedUser }) {
 
 	useEffect(() => {
 	    async function loadData() {
@@ -36,6 +38,16 @@ function App({ dispatch, loading }) {
 					</Route>
 					<Route path='/question/:id'>
 						<ConnectedQuestionPage />
+					</Route>
+					<Route path='/login'>
+						<ForceLogin />
+					</Route>
+					<Route path='/new-question'>
+						{(authedUser === null) ? (
+							<Redirect to='/login' />
+						) : (
+							<ConnectedNewQuestion />
+						) }
 					</Route>
 					<Route path='*'>
 						<PageNotFound />
@@ -78,9 +90,18 @@ function ShowLoadingSpinner() {
 	)
 }
 
-function mapStateToProps({ loadingBar }) {
+function ForceLogin() {
+	return (
+		<Container align='center' fluid>
+			<ConnectedLogin />
+		</Container>
+	)
+}
+
+function mapStateToProps({ loadingBar, authedUser }) {
 	return {
 		loading: loadingBar.default,
+		authedUser
 	}
 }
 
