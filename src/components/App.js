@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import ConnectedDashboard from './Dashboard'
 import Navigation from './Navigation'
 import { Route } from 'react-router-dom'
+import Footer from './Footer'
 
 function App({ dispatch, loading }) {
 
@@ -22,7 +23,7 @@ function App({ dispatch, loading }) {
 		<>
 			<Navigation />
 
-			<LoadingBar />
+			<LoadingBar style={{ backgroundColor: 'deepskyblue' }} />
 
 			<br />
 
@@ -31,10 +32,16 @@ function App({ dispatch, loading }) {
 			) : (
 				<Container align='center' fluid>
 					<Spinner animation="grow" style={{
-						margin: '200px'
+						backgroundColor: 'white',
+						margin: '200px',
+						boxShadow: '0px 0px 25px deepskyblue'
 					}} />
 				</Container>
 			)}
+
+			<br />
+
+			<Footer />
 		</>
 	);
 }
