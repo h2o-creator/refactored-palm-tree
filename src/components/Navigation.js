@@ -18,14 +18,14 @@ function Navigation() {
                 </Container>
             </Navbar.Brand>
             <Navbar.Collapse>
-                <Nav className='me-auto'>
+                <ConnectedLogout />
+                <Nav>
                     <Container>
                         <Nav.Link as={Link} className='align-middle' to='/'>
                             Home
                         </Nav.Link>
                     </Container>
                 </Nav>
-                <ConnectedLogout />
             </Navbar.Collapse>
         </Navbar>
     )
