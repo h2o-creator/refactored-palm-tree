@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col'
 import { formatQuestion } from '../utils/helpers'
 
 function NewQuestion({ authedUser }) {
+    const threshold = 100
+
     const [questionOptions, setOptions] = useState({ 
         optionOne: '',
         optionTwo: ''
@@ -41,10 +43,20 @@ function NewQuestion({ authedUser }) {
                         <Form.Label>First Option</Form.Label>
                         <Form.Control name='optionOne' onChange={handleChange} value={questionOptions.optionOne} type='text' placeholder='What would you prefer first?'
                             maxLength={100} />
+                        {
+                            (threshold - questionOptions.optionOne.length < 25) && (
+                                <span style={{ color: 'red', float: 'right' }}>{threshold - questionOptions.optionOne.length}</span>
+                            )
+                        }
                         <br />
                         <Form.Label>Second Option</Form.Label>
                         <Form.Control name='optionTwo' onChange={handleChange} value={questionOptions.optionTwo} type='text' placeholder='What would you prefer second?' 
                             maxLength={100} />
+                        {
+                            (threshold - questionOptions.optionTwo.length < 25) && (
+                                <span style={{ color: 'red', float: 'right' }}>{threshold - questionOptions.optionTwo.length}</span>
+                            )
+                        }
                     </Form.Group>
                     <br />
                     <Button type='submit' disabled={questionOptions.optionOne === '' || questionOptions.optionTwo === ''}>Add Question</Button>
