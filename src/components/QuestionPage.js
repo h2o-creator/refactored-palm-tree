@@ -16,7 +16,7 @@ function QuestionPage({ questions }) {
 
     return (
         <Container className='custom-body' fluid>
-            <Col className='col-lg-6'>
+            <Col className='col-lg-6' style={{ margin: '0 auto' }}>
                 <h1>Would You Rather</h1>
                 {
                     (question !== null) ? (
