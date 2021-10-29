@@ -1,16 +1,15 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
 import { connect } from 'react-redux'
 import ConnectedQuestion from './Question'
+import Col from 'react-bootstrap/Col'
 
 function Questions({ questionIds }) {
     return (
-        <Container style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black' }} fluid>
-            <h3>Would You Rather...?</h3>
+        <Col>
             {questionIds.map((questionId) => (
                 <ConnectedQuestion key={questionId} questionId={questionId} />
             ))}
-        </Container>
+        </Col>
     )
 }
 

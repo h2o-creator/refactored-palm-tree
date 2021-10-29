@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
 import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
@@ -13,7 +14,7 @@ function Question({ author, optionOne, optionTwo, timestamp, id }) {
     const params = useParams()
 
     return (
-        <>
+        <Col>
             <Card style={{ padding: '20px' }}>
                 <Card.Header>
                     <h4 >{`Would you rather ${optionOne.text} (${optionOne.votes.length}) `} <span style={{ color: 'red' }}>||</span> {` (${optionTwo.votes.length}) ${optionTwo.text}? `}</h4>
@@ -32,7 +33,7 @@ function Question({ author, optionOne, optionTwo, timestamp, id }) {
                 </Card.Body>
             </Card>
             <br />
-        </>    
+        </Col>    
     )
 }
 

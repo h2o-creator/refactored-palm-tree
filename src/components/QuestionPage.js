@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import ConnectedQuestion from './Question'
@@ -16,21 +15,15 @@ function QuestionPage({ questions }) {
     )
 
     return (
-        <Container className='col-11' fluid>
-            <Row>
-                <Col>
-                    <h1 style={{ textAlign: 'center' }}>Would You Rather</h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    {
-                        (question !== null) ? (
-                            <ConnectedQuestion questionId={question} />
-                        ) : ( <Redirect to='/404' /> )
-                    }
-                </Col>
-            </Row>
+        <Container fluid>
+            <Col className='col-6'>
+                <h1>Would You Rather</h1>
+                {
+                    (question !== null) ? (
+                        <ConnectedQuestion questionId={question} />
+                    ) : ( <Redirect to='/404' /> )
+                }
+            </Col>
         </Container>
     )
 }
