@@ -15,8 +15,8 @@ function QuestionPage({ questions }) {
     )
 
     return (
-        <Container fluid>
-            <Col className='col-6'>
+        <Container className='custom-body' fluid>
+            <Col className='col-lg-6'>
                 <h1>Would You Rather</h1>
                 {
                     (question !== null) ? (

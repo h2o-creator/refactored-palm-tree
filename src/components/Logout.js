@@ -7,8 +7,8 @@ import setAuthedUser from '../actions/setAuthedUser'
 
 function Logout({ dispatch, loading, authedUser, users }) {
     return (loading === 0 && authedUser !== null) && (
-        <Nav>
-            <Container fluid>
+        <Nav className='ms-auto'>
+            <Container style={{ textAlign: 'right' }} fluid>
                 <img width='50px' style={{ borderRadius: '500px', border: '1px solid white', padding: '1px', margin: '5px' }} 
                     src={users.filter((user) => user.id === authedUser).map((user) => user.avatarURL)} 
                     alt={`Displaying avatar of ${authedUser}`} />

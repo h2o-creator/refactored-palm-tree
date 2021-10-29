@@ -31,8 +31,8 @@ function Login({ dispatch, users, history }) {
     }
 
     return (
-        <Col align='center' className='col-3'>
-            <Card style={{ marginLeft: '10px' }}>
+        <Col align='center' className='col-12 col-lg-6 custom-body'>
+            <Card>
                 <Card.Header>
                     {userAvatar.current !== null ? (
                         <img src={userAvatar.current} width={'150px'} alt={`Avatar of ${selectedUser}`}

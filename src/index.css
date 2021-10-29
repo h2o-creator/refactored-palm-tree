@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+.custom-body {
+  padding-bottom: 150px;
+}
+
+footer {
+  position: absolute;
+  height: 50px;
+  bottom: 0;
+}

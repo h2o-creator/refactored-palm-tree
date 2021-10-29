@@ -32,11 +32,11 @@ function NewQuestion({ authedUser }) {
     }
 
     return (
-        <Container align='center' fluid>
+        <Container align='center' className='custom-body' fluid>
             <h3>Post a new Question</h3>
             <p>Posting as: {authedUser}</p>
             <br />
-            <Col lg='5' style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black', textAlign: 'center' }} >
+            <Col lg='6' style={{ border: '1px solid black', padding: '25px', boxShadow: '0px 0px 5px black', textAlign: 'center' }} >
                 <Form onSubmit={handleSubmit}>
                     <h4>Would You Rather</h4>
                     <Form.Group>

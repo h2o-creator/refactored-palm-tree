@@ -8,24 +8,29 @@ import { Link } from 'react-router-dom'
 
 function Navigation() {
     return (
-        <Navbar bg='dark' variant='dark'>
-            <Navbar.Brand>
-                <Container>
-                    <FaTree color='deepskyblue' style={{
-                        marginRight: '10px'
-                    }} className='align-middle' />
-                    <span className='align-middle'>Refactored Palm Tree</span>
-                </Container>
-            </Navbar.Brand>
-            <ConnectedLogout />
-            <Nav>
-                <Nav.Link as={Link} className='align-middle' to='/'>
-                    Home
-                </Nav.Link>
-                <Nav.Link as={Link} className='align-middle' to='/new-question'>
-                    New Question
-                </Nav.Link>
-            </Nav>
+        <Navbar bg='dark' variant='dark' expand='lg'>
+            <Container>
+                <Navbar.Brand>
+                    <Container>
+                        <FaTree color='deepskyblue' style={{
+                            marginRight: '10px'
+                        }} className='align-middle' />
+                        <span className='align-middle'>Refactored Palm Tree</span>
+                    </Container>
+                </Navbar.Brand>
+                    <Navbar.Toggle aria-controls='links-navbar' />
+                    <Navbar.Collapse id='links-navbar'>
+                        <Nav className='me-auto'>
+                            <Nav.Link as={Link} className='align-middle' to='/'>
+                                Home
+                            </Nav.Link>
+                            <Nav.Link as={Link} className='align-middle' to='/new-question'>
+                                New Question
+                            </Nav.Link>
+                        </Nav>
+                        <ConnectedLogout />
+                    </Navbar.Collapse>
+            </Container>
         </Navbar>
     )
 }
