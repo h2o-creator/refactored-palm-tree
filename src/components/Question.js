@@ -77,6 +77,8 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                             {optionOne.votes.length} voted for the first option
                                             <br />
                                             {optionTwo.votes.length} voted for the second
+                                            <br />
+                                            {totalVotes()} voted for either
                                         </>    
                                     )
                                 }    
@@ -86,9 +88,11 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                     <Row>
                         <Container className={firstQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
                                         borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
-                            <div onClick={(e) => vote(e, 1)}>
+                            <div onClick={(e) => vote(e, 1)} style={{ position: 'relative' }}>
                                 <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
                                 <ProgressBar now={totalVotesPercentage('optionOne')} />
+                                {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
+                                    fontWeight: '600', position: 'absolute', right: '0', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
                             </div>
                         </Container>
                     </Row>
@@ -96,9 +100,11 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                     <Row>
                         <Container className={secondQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
                                         borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
-                            <div onClick={(e) => vote(e, 2)}>
+                            <div onClick={(e) => vote(e, 2)} style={{ position: 'relative' }}>
                                 <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
                                 <ProgressBar now={totalVotesPercentage('optionTwo')} />
+                                {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
+                                    fontWeight: '600', position: 'absolute', right: '0', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
                             </div>
                         </Container>
                     </Row>
