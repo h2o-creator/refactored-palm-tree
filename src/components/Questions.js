@@ -8,8 +8,8 @@ import Button from 'react-bootstrap/Button'
 import { FaArrowDown } from 'react-icons/fa'
 
 function Questions({ questionIds, questions }) {
-    const [toggleUnanswered, setUnanswered] = useState(false)
-    const [toggleAnswered, setAnswered] = useState(true)
+    const [toggleUnanswered, setUnanswered] = useState(true)
+    const [toggleAnswered, setAnswered] = useState(false)
     const unanswered = questionIds.filter((questionId) => (questions[questionId].optionOne.votes.length === 0 &&
         questions[questionId].optionTwo.votes.length === 0))
     const answered = questionIds.filter((questionId) => (questions[questionId].optionOne.votes.length > 0 ||
