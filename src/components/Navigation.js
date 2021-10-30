@@ -28,6 +28,9 @@ function Navigation({ authedUser }) {
                             <Nav.Link as={Link} className='align-middle' to='/new-question'>
                                 New Question
                             </Nav.Link>
+                            <Nav.Link as={Link} className='align-middle' to='/leaderboard'>
+                                Leaderboard
+                            </Nav.Link>
                             {authedUser === null && (
                                 <Nav.Link as={Link} className='align-middle' to='/login'>
                                     Login
