@@ -5,8 +5,8 @@ import LoadingBar from 'react-redux-loading-bar'
 import Container from 'react-bootstrap/Container'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.css'
-import ConnectedDashboard from './Dashboard'
-import Navigation from './Navigation'
+import Dashboard from './Dashboard'
+import ConnectedNavigation from './Navigation'
 import { Route, Switch, useLocation, Link, Redirect } from 'react-router-dom'
 import Footer from './Footer'
 import { FaSadTear, FaCoffee } from 'react-icons/fa'
@@ -25,7 +25,7 @@ function App({ dispatch, loading, authedUser }) {
 
 	return (
 		<>
-			<Navigation />
+			<ConnectedNavigation />
 
 			<LoadingBar style={{ backgroundColor: 'deepskyblue' }} />
 
@@ -34,7 +34,7 @@ function App({ dispatch, loading, authedUser }) {
 			{(loading === 0) ? (
 				<Switch>
 					<Route exact path='/'>
-						<ConnectedDashboard />
+						<Dashboard />
 					</Route>
 					<Route path='/question/:id'>
 						{(authedUser === null) ? (

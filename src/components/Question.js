@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
@@ -28,7 +29,7 @@ function Question({ dispatch, author, optionOne, optionTwo, timestamp, id, authe
     }
 
     return (
-        <Col>
+        <Row>
             <Card style={{ padding: '20px' }}>
                 <Card.Header>
                     <h4 >{`Would you rather ${optionOne.text} (${optionOne.votes.length}) `} or {` (${optionTwo.votes.length}) ${optionTwo.text}? `}</h4>
@@ -59,7 +60,7 @@ function Question({ dispatch, author, optionOne, optionTwo, timestamp, id, authe
                 </Card.Body>
             </Card>
             <br />
-        </Col>    
+        </Row>    
     )
 }
 

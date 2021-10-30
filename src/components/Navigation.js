@@ -5,8 +5,9 @@ import Container from 'react-bootstrap/Container'
 import ConnectedLogout from './Logout'
 import { FaTree } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-function Navigation() {
+function Navigation({ authedUser }) {
     return (
         <Navbar bg='dark' variant='dark' expand='lg'>
             <Container>
@@ -27,6 +28,11 @@ function Navigation() {
                             <Nav.Link as={Link} className='align-middle' to='/new-question'>
                                 New Question
                             </Nav.Link>
+                            {authedUser === null && (
+                                <Nav.Link as={Link} className='align-middle' to='/login'>
+                                    Login
+                                </Nav.Link>
+                            )}
                         </Nav>
                         <ConnectedLogout />
                     </Navbar.Collapse>
@@ -35,4 +41,10 @@ function Navigation() {
     )
 }
 
-export default Navigation
+function mapStateToProps({ authedUser }) {
+    return {
+        authedUser,
+    }
+}
+
+export default connect(mapStateToProps)(Navigation)

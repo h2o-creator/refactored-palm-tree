@@ -31,7 +31,7 @@ function Login({ dispatch, users, history }) {
     }
 
     return (
-        <Col align='center' className='col-12 col-lg-6 custom-body'>
+        <Col align='center' className='col-12 col-lg-4 custom-body'>
             <Card>
                 <Card.Header>
                     {userAvatar.current !== null ? (
