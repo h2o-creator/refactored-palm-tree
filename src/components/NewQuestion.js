@@ -44,12 +44,12 @@ function NewQuestion({ dispatch, authedUser }) {
             </Row>
             <br />
             <Col lg='6' style={{ margin: '0 auto' }}>
-                <Card style={{ padding: '25px' }}>
+                <Card style={{ padding: '25px' }} bg='black' text='light'>
                     <Form onSubmit={handleSubmit}>
                         <h4>Would You Rather</h4>
                         <Form.Group>
                             <Form.Label>First Option</Form.Label>
-                            <Form.Control name='optionOne' onChange={handleChange} value={questionOptions.optionOne} type='text' placeholder='What would you prefer first?'
+                            <Form.Control className='bg-dark text-light' name='optionOne' onChange={handleChange} value={questionOptions.optionOne} type='text' placeholder='What would you prefer first?'
                                 maxLength={100} />
                             {
                                 (threshold - questionOptions.optionOne.length < 25) && (
@@ -58,7 +58,7 @@ function NewQuestion({ dispatch, authedUser }) {
                             }
                             <br />
                             <Form.Label>Second Option</Form.Label>
-                            <Form.Control name='optionTwo' onChange={handleChange} value={questionOptions.optionTwo} type='text' placeholder='What would you prefer second?' 
+                            <Form.Control className='bg-dark text-light' name='optionTwo' onChange={handleChange} value={questionOptions.optionTwo} type='text' placeholder='What would you prefer second?' 
                                 maxLength={100} />
                             {
                                 (threshold - questionOptions.optionTwo.length < 25) && (

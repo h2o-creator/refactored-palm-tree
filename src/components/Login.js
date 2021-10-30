@@ -32,7 +32,7 @@ function Login({ dispatch, users, history }) {
 
     return (
         <Col align='center' className='col-12 col-lg-4 custom-body'>
-            <Card>
+            <Card bg='black' text='light'>
                 <Card.Header>
                     {userAvatar.current !== null ? (
                         <img src={userAvatar.current} width={'150px'} alt={`Avatar of ${selectedUser}`}
@@ -46,7 +46,7 @@ function Login({ dispatch, users, history }) {
                 <Card.Body>
                     <Form onSubmit={(e) => handleSubmit(e)}>
                         <Form.Group>
-                            <Form.Select value={selectedUser} onChange={triggerUpdate} >
+                            <Form.Select className='bg-dark text-light' value={selectedUser} onChange={triggerUpdate} >
                                 <option value='undefined'>Select username to login</option>
                                 {users.map((user) => (
                                     <option value={user.id} key={user.id}>

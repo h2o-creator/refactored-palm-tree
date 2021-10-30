@@ -2,13 +2,15 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 import { RiNumber1, RiNumber2 } from 'react-icons/ri'
 import handleUpdateVote from '../actions/UpdateVote'
 
-function Question({ dispatch, author, optionOne, optionTwo, timestamp, id, authedUser }) {
+function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timestamp, id, authedUser, questions }) {
     const dateConst = new Date(timestamp)
     const date = dateConst.toLocaleDateString('en-IL');
     const time = dateConst.toLocaleTimeString('en-US');
@@ -16,10 +18,14 @@ function Question({ dispatch, author, optionOne, optionTwo, timestamp, id, authe
     const history = useHistory()
     const params = useParams()
 
+    const firstQuestionColor = hasVotedFirst() ? 'bg-dark' : 'bg-black'
+    const secondQuestionColor = hasVotedSecond() ? 'bg-dark' : 'bg-black'
+
     function vote(e, opt) {
         if (authedUser !== null) {
             const option = opt === 1 ? 'optionOne' : 'optionTwo'
             const qid = id
+            if ((option === 'optionOne' && hasVotedSecond()) || (option === 'optionTwo' && hasVotedFirst())) return false
             dispatch(handleUpdateVote({
                 qid,
                 answer: option,
@@ -28,45 +34,98 @@ function Question({ dispatch, author, optionOne, optionTwo, timestamp, id, authe
         }
     }
 
+    function hasVoted() {
+        return (questions[id].optionOne.votes.includes(authedUser) ||
+                questions[id].optionTwo.votes.includes(authedUser))
+    }
+
+    function hasVotedFirst() {
+        return (questions[id].optionOne.votes.includes(authedUser))
+    }
+
+    function hasVotedSecond() {
+        return (questions[id].optionTwo.votes.includes(authedUser))
+    }
+
+    function totalVotes() {
+        return questions[id].optionOne.votes.length + questions[id].optionTwo.votes.length 
+    }
+
+    function totalVotesPercentage(opt) {
+        return (questions[id][opt].votes.length / (questions[id].optionOne.votes.length + questions[id].optionTwo.votes.length) * 100).toFixed(1)
+    }
+
     return (
         <Row>
-            <Card style={{ padding: '20px' }}>
+            <Card style={{ padding: '20px', marginBottom: '5px' }} bg='black' text='light'>
                 <Card.Header>
-                    <h4 >{`Would you rather ${optionOne.text} (${optionOne.votes.length}) `} or {` (${optionTwo.votes.length}) ${optionTwo.text}? `}</h4>
+                    <Row className='d-flex'>
+                        <Col className='col-lg-8'>
+                            <h3>{`@${author} asks:`}</h3>
+                            <h4 >Would you rather</h4>
+                        </Col>
+                        <Col className='col-lg-4' style={{ textAlign: 'right' }}>
+                            <img src={authorAvatar} width={'100px'} alt={`${author} avatar`} 
+                                style={{ borderRadius: '500px', border: '1px solid black', padding: '1px', margin: '5px' }}/>
+                            <br />
+                            <br />
+                            <p className='blockquote-footer'>
+                                {`${date} ${time}`}
+                                {hasVoted() && (
+                                        <>
+                                            <br />
+                                            {optionOne.votes.length} voted for the first option
+                                            <br />
+                                            {optionTwo.votes.length} voted for the second
+                                        </>    
+                                    )
+                                }    
+                            </p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Container className={firstQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
+                                        borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
+                            <div onClick={(e) => vote(e, 1)}>
+                                <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
+                                <ProgressBar now={totalVotesPercentage('optionOne')} />
+                            </div>
+                        </Container>
+                    </Row>
                     <br />
-                    <p className='blockquote-footer'>
-                        {`Asked by ${author}`} 
-                        <br />
-                        {`${date} ${time}`}
-                    </p>
-                    <p style={{ float: 'right' }}>{`${optionOne.votes.length} voted for the first option, ${optionTwo.votes.length} voted for the second`}</p>
+                    <Row>
+                        <Container className={secondQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
+                                        borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
+                            <div onClick={(e) => vote(e, 2)}>
+                                <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
+                                <ProgressBar now={totalVotesPercentage('optionTwo')} />
+                            </div>
+                        </Container>
+                    </Row>
+                    <br />
                 </Card.Header>
-                <Card.Body className='d-flex'>
-                    <Col className='col-1'>
-                        <button title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/question/${id}`))} disabled={params.id === id}>
-                            <FaArrowRight size='25px' />
-                        </button>
-                    </Col>
-                    <Col className='col-1'>
-                        <button title='Vote for first' onClick={(e) => vote(e, 1)} disabled={authedUser === null}>
-                            <RiNumber1 color='green' size='25px' />
-                        </button>
-                    </Col>
-                    <Col className='col-1'>
-                        <button title='Vote for second' onClick={(e) => vote(e, 2)} disabled={authedUser === null}>
-                            <RiNumber2 color='red' size='25px' />
-                        </button>
-                    </Col>
+                <Card.Body>
+                    <button className='btn btn-secondary m-1' title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/question/${id}`))} disabled={params.id === id || authedUser === null}>
+                        <FaArrowRight size='25px' />
+                    </button>
+                    <button className='btn btn-secondary m-1' title='Vote for first' onClick={(e) => vote(e, 1)} disabled={authedUser === null || hasVotedSecond()}>
+                        <RiNumber1 size='25px' />
+                        {hasVotedFirst() && ( <>(Click to unvote)</> )}
+                    </button>
+                    <button className='btn btn-secondary m-1' title='Vote for second' onClick={(e) => vote(e, 2)} disabled={authedUser === null || hasVotedFirst()}>
+                        <RiNumber2 size='25px' />
+                        {hasVotedSecond() && ( <>(Click to unvote)</> )}
+                    </button>
                 </Card.Body>
             </Card>
-            <br />
         </Row>    
     )
 }
 
-function mapStateToProps({ questions, authedUser }, { questionId }) {
+function mapStateToProps({ questions, authedUser, users }, { questionId }) {
     const question = questions[questionId]
     const { author, optionOne, optionTwo, timestamp, id } = question
+    const authorAvatar = users[author].avatarURL
 
     return {
         id,
@@ -74,7 +133,9 @@ function mapStateToProps({ questions, authedUser }, { questionId }) {
         optionOne,
         optionTwo,
         timestamp,
-        authedUser
+        authedUser,
+        questions,
+        authorAvatar
     }
 }
 

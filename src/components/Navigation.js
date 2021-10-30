@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 function Navigation({ authedUser }) {
     return (
-        <Navbar bg='dark' variant='dark' expand='lg'>
+        <Navbar bg='black' variant='dark' expand='lg'>
             <Container>
                 <Navbar.Brand>
                     <Container>

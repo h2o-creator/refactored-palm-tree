@@ -5,8 +5,8 @@ import { FaTree } from 'react-icons/fa'
 
 function Footer() {
     return (
-        <Container as='footer' className='bg-dark text-light d-inline-flex' fluid>
-            <Col align='center'>
+        <Container as='footer' className='bg-black text-light d-inline-flex' fluid>
+            <Col align='center' style={{ paddingTop: '5px' }}>
                 <FaTree size='20px' color='deepskyblue' />
                 Project Refactored Palm Tree
                 <FaTree size='20px' color='deepskyblue' />
