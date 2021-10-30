@@ -5,7 +5,7 @@ import ConnectedQuestions from './Questions'
 
 function Dashboard() {
     return (
-        <Container className='custom-body' fluid>
+        <Container className='custom-body'>
             <Row>
                 <ConnectedQuestions />
             </Row>
