@@ -38,7 +38,7 @@ function Login({ dispatch, users, history }) {
                         <img src={userAvatar.current} width={'150px'} alt={`Avatar of ${selectedUser}`}
                             style={{ borderRadius: '500px', border: '1px solid white', padding: '1px', margin: '5px' }} />
                     ) : (<FaUserCircle size='150px' color='deepskyblue' />)}
-                    <h2 style={{ textAlign: 'center' }}>Hello, Guest!</h2>
+                    <h2 style={{ textAlign: 'center' }}>Hello, {userAvatar.current !== null ? selectedUser : 'Guest' }!</h2>
                     <Alert variant='warning'>
                         Please login to continue!
                     </Alert>
