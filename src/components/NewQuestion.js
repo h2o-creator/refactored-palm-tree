@@ -20,7 +20,7 @@ function NewQuestion({ dispatch, authedUser }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        if (questionOptions.optionOne === '' || questionOptions.optionTwo === '') return false
+        if (questionOptions.optionOne === '' || questionOptions.optionTwo === '' || authedUser === null) return false
         await dispatch(handleAddQuestion({
             optionOneText: questionOptions.optionOne, 
             optionTwoText: questionOptions.optionTwo, 
