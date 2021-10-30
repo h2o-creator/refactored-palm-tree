@@ -4,9 +4,11 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
-import { formatQuestion } from '../utils/helpers'
+import handleAddQuestion from '../actions/addNewQuestion'
+import { useHistory } from 'react-router-dom'
 
-function NewQuestion({ authedUser }) {
+function NewQuestion({ dispatch, authedUser }) {
+    const history = useHistory()
     const threshold = 100
 
     const [questionOptions, setOptions] = useState({ 
@@ -14,14 +16,15 @@ function NewQuestion({ authedUser }) {
         optionTwo: ''
     })
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         if (questionOptions.optionOne === '' || questionOptions.optionTwo === '') return false
-        const questionData = formatQuestion({
+        await dispatch(handleAddQuestion({
             optionOneText: questionOptions.optionOne, 
             optionTwoText: questionOptions.optionTwo, 
             author: authedUser
-        })
+        }))
+        history.push('/')
     }
 
     function handleChange(e) {
