@@ -92,7 +92,7 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                 <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
                                 <ProgressBar now={totalVotesPercentage('optionOne')} />
                                 {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
-                                    fontWeight: '600', position: 'absolute', right: '0', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                    fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
                             </div>
                         </Container>
                     </Row>
@@ -104,7 +104,7 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                 <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
                                 <ProgressBar now={totalVotesPercentage('optionTwo')} />
                                 {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
-                                    fontWeight: '600', position: 'absolute', right: '0', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                    fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
                             </div>
                         </Container>
                     </Row>
