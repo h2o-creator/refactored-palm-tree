@@ -4,8 +4,9 @@ import Col from 'react-bootstrap/Col'
 import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
+import { RiNumber1, RiNumber2 } from 'react-icons/ri'
 
-function Question({ author, optionOne, optionTwo, timestamp, id }) {
+function Question({ author, optionOne, optionTwo, timestamp, id, authedUser }) {
     const dateConst = new Date(timestamp)
     const date = dateConst.toLocaleDateString('en-IL');
     const time = dateConst.toLocaleTimeString('en-US');
@@ -26,10 +27,22 @@ function Question({ author, optionOne, optionTwo, timestamp, id }) {
                     </p>
                     <p style={{ float: 'right' }}>{`${optionOne.votes.length} voted for the first option, ${optionTwo.votes.length} voted for the second`}</p>
                 </Card.Header>
-                <Card.Body>                    
-                    <button title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/question/${id}`))} disabled={params.id === id}>
-                        <FaArrowRight size='25px' />
-                    </button>
+                <Card.Body className='d-flex'>
+                    <Col className='col-1'>
+                        <button title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/question/${id}`))} disabled={params.id === id}>
+                            <FaArrowRight size='25px' />
+                        </button>
+                    </Col>
+                    <Col className='col-1'>
+                        <button title='Vote for first' onClck={() => (1)} disabled={authedUser === null}>
+                            <RiNumber1 color='green' size='25px' />
+                        </button>
+                    </Col>
+                    <Col className='col-1'>
+                        <button title='Vote for second' onClck={() => (1)} disabled={authedUser === null}>
+                            <RiNumber2 color='red' size='25px' />
+                        </button>
+                    </Col>
                 </Card.Body>
             </Card>
             <br />
@@ -37,7 +50,7 @@ function Question({ author, optionOne, optionTwo, timestamp, id }) {
     )
 }
 
-function mapStateToProps({ questions }, { questionId }) {
+function mapStateToProps({ questions, authedUser }, { questionId }) {
     const question = questions[questionId]
     const { author, optionOne, optionTwo, timestamp, id } = question
 
@@ -47,6 +60,7 @@ function mapStateToProps({ questions }, { questionId }) {
         optionOne,
         optionTwo,
         timestamp,
+        authedUser
     }
 }
 
