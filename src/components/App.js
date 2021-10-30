@@ -37,7 +37,11 @@ function App({ dispatch, loading, authedUser }) {
 						<ConnectedDashboard />
 					</Route>
 					<Route path='/question/:id'>
-						<ConnectedQuestionPage />
+						{(authedUser === null) ? (
+							<Redirect to='/login' />
+						) : (
+							<ConnectedQuestionPage />
+						) }
 					</Route>
 					<Route path='/login'>
 						<ForceLogin />
