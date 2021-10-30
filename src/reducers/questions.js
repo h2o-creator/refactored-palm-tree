@@ -23,6 +23,7 @@ export default function questions(state = {}, action) {
                 [qid]: {
                     ...state[qid],
                     [option]: {
+                        ...state[qid][option],
                         votes: state[qid][option].votes.includes(authedUser) ?
                             state[qid][option].votes.filter((voter) => voter !== authedUser) :
                             state[qid][option].votes.concat(authedUser)
