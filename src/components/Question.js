@@ -5,14 +5,27 @@ import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 import { RiNumber1, RiNumber2 } from 'react-icons/ri'
+import handleUpdateVote from '../actions/UpdateVote'
 
-function Question({ author, optionOne, optionTwo, timestamp, id, authedUser }) {
+function Question({ dispatch, author, optionOne, optionTwo, timestamp, id, authedUser }) {
     const dateConst = new Date(timestamp)
     const date = dateConst.toLocaleDateString('en-IL');
     const time = dateConst.toLocaleTimeString('en-US');
 
     const history = useHistory()
     const params = useParams()
+
+    function vote(e, opt) {
+        if (authedUser !== null) {
+            const option = opt === 1 ? 'optionOne' : 'optionTwo'
+            const qid = id
+            dispatch(handleUpdateVote({
+                qid,
+                answer: option,
+                authedUser
+            }))
+        }
+    }
 
     return (
         <Col>
@@ -34,12 +47,12 @@ function Question({ author, optionOne, optionTwo, timestamp, id, authedUser }) {
                         </button>
                     </Col>
                     <Col className='col-1'>
-                        <button title='Vote for first' onClck={() => (1)} disabled={authedUser === null}>
+                        <button title='Vote for first' onClick={(e) => vote(e, 1)} disabled={authedUser === null}>
                             <RiNumber1 color='green' size='25px' />
                         </button>
                     </Col>
                     <Col className='col-1'>
-                        <button title='Vote for second' onClck={() => (1)} disabled={authedUser === null}>
+                        <button title='Vote for second' onClick={(e) => vote(e, 2)} disabled={authedUser === null}>
                             <RiNumber2 color='red' size='25px' />
                         </button>
                     </Col>
