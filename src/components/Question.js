@@ -90,7 +90,7 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                         borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
                             <div onClick={(e) => vote(e, 1)} style={{ position: 'relative' }}>
                                 <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
-                                <ProgressBar now={totalVotesPercentage('optionOne')} />
+                                <ProgressBar now={totalVotesPercentage('optionOne')} label={`${optionOne.votes.length} out of ${totalVotes()}`} />
                                 {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
                                     fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
                             </div>
@@ -102,7 +102,7 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                         borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
                             <div onClick={(e) => vote(e, 2)} style={{ position: 'relative' }}>
                                 <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
-                                <ProgressBar now={totalVotesPercentage('optionTwo')} />
+                                <ProgressBar now={totalVotesPercentage('optionTwo')} label={`${optionTwo.votes.length} out of ${totalVotes()}`} />
                                 {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
                                     fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
                             </div>
