@@ -31,7 +31,7 @@ function App({ dispatch, loading, authedUser }) {
 
 			<br />
 
-			{(loading === 0) ? (
+			{(loading === 0 || (loading === 1 && authedUser !== null)) ? (
 				<Switch>
 					<Route exact path='/'>
 						<Dashboard />
