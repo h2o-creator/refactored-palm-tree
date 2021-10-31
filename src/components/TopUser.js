@@ -5,8 +5,9 @@ import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { connect } from 'react-redux'
+import { GiDiamondTrophy, GiLaurelsTrophy, GiTrophy } from 'react-icons/gi'
 
-function TopUser({ id, name, avatar, askedQuestions, answeredQuestions, totalScore, totalQuestions, totalAnswers }) {
+function TopUser({ id, name, avatar, askedQuestions, answeredQuestions, totalScore, totalQuestions, totalAnswers, index, authedUser }) {
     function asksPercent() {
         return (((askedQuestions / totalQuestions) * 100).toFixed(1))
     }
@@ -21,11 +22,19 @@ function TopUser({ id, name, avatar, askedQuestions, answeredQuestions, totalSco
                 <Card.Header>
                     <Row className='d-flex'>
                         <Col className='col-lg-8'>
-                            <h3>{`${name}`}</h3>
+                            <h3>{`#${index} ${name}`}</h3>
+                            {
+                                authedUser === id && (
+                                    <h4>It's You! 🎉🎉🏆</h4>
+                                )
+                            }
                         </Col>
                         <Col className='col-lg-4' style={{ textAlign: 'right' }}>
                             <img src={avatar} width={'100px'} alt={`${name} avatar`} 
                                 style={{ borderRadius: '500px', border: '1px solid black', padding: '1px', margin: '5px' }}/>
+                            {
+                                index === 1 ? <GiDiamondTrophy color='orange' size='50px' /> : (index === 2 ? <GiLaurelsTrophy color='green' size='50px' /> : <GiTrophy size='50px' />)
+                            }
                             <br />
                             <br />
                             <p className='blockquote-footer'>
@@ -64,10 +73,11 @@ function TopUser({ id, name, avatar, askedQuestions, answeredQuestions, totalSco
     )
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, authedUser }) {
     return {
         totalQuestions: Object.values(questions).length,
-        totalAnswers: Object.values(questions).filter((question) => question.optionOne.votes.length > 0 || question.optionTwo.votes.length).length
+        totalAnswers: Object.values(questions).filter((question) => question.optionOne.votes.length > 0 || question.optionTwo.votes.length).length,
+        authedUser
     }
 }
 
