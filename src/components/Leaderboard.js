@@ -45,7 +45,7 @@ function mapStateToProps({ users, questions }) {
         })
     })
 
-    topUsers.splice(3)
+    topUsers.splice(4)
     topUsers.sort((a, b) => b.totalScore - a.totalScore)
     
     return {
