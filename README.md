@@ -8,6 +8,68 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![Refactored Palm Tree Preview](./preview/project-refactored-palm-tree-preview)
 
+## Specifications
+
+- Follows the specifications of the Udacity Rubric (Would You Rather?)
+- Responsive layout - provides the same experience cross-device
+- Free from warnings and errors
+- State managed completely using Redux
+- Built using react and initiated using Create-React-App
+- Consists of connected components, presentational components, actions and reducers
+- The default API shipped with the project was modified to create custom avatars and to meet with the system feature demands
+    i.e. Password and Avatars
+
+## Dependencies
+
+```json
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "bootstrap": "^5.1.3",
+    "randomcolor": "^0.6.2",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.0",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-redux": "^7.2.6",
+    "react-redux-loading-bar": "^5.0.2",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "^3.4.4",
+    "redux": "^4.1.1",
+    "redux-thunk": "^2.4.0",
+    "spark-md5": "^3.0.2",
+    "squareicon": "^1.0.3",
+    "web-vitals": "^1.0.1"
+  },
+```
+
+## Copyright & License
+
+(C) 2021 Abdelhady Salah Abdelkader. All Rights Reserved.
+Licensed under GNU GPL v3
+
+## Features Overview
+
+- User system
+    - Users can login
+    - Certain pages require being logged in to access
+    - Logged in users can create users, access the leaderboard, create and access polls
+    - Users have auto-generated avatars based on ther id
+- Polls system
+    - All the polls have the same question: Would You Rather?
+    - Polls have two options only that users can choose from
+    - Users can ask questions and others are able to answer them (following the rules of the game)
+    - Users who have voted are able to view poll results
+    - Users MUST un-vote before they can vote for the other option
+    - Answered questions are separated from unanswered (unanswered are preferred)
+    - Each user has his own version of the answered/unanswered lists
+- Leaderboard
+    - Top 4 users are displayed on the list
+    - Trophies are given to top users (have different color and icon type)
+    - Score is calculated according to: How many questions asked + answered 
+    - Answered questions in the leaderboard refer to questions that have received at least 1 answer
+
 ## Available Scripts
 
 In the project directory, you can run:
