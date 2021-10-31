@@ -166,14 +166,22 @@ export function _saveQuestion (question) {
 export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 	return new Promise((res, rej) => {
 		setTimeout(() => {
+			let answers = {}
+			if (Object.keys(users[authedUser].answers).includes(qid)) {
+				for (const [key, value] of Object.entries(users[authedUser].answers)) {
+					if (key !== qid) {
+						answers = Object.assign(answers, { [key]: value })
+					}
+				}
+			} else {
+				answers = Object.assign(answers, { ...users[authedUser].answers, [qid]: answer })
+			}
+
 			users = {
 				...users,
 				[authedUser]: {
 					...users[authedUser],
-					answers: {
-						...users[authedUser].answers,
-						[qid]: answer
-					}
+					answers,
 				}
 			}
 
