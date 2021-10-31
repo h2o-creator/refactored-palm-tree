@@ -92,10 +92,14 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                 <Container className={firstQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
                                                 borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
                                     <div onClick={(e) => vote(e, 1)} style={{ position: 'relative' }}>
-                                        <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
-                                        <ProgressBar now={totalVotesPercentage('optionOne')} label={`${optionOne.votes.length} out of ${totalVotes()}`} />
-                                        {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
-                                            fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                        <h4>1. {optionOne.text} {hasVoted() && (<>({totalVotesPercentage('optionOne')}%)</>)}</h4>
+                                        {hasVoted() && (
+                                            <>
+                                                <ProgressBar now={totalVotesPercentage('optionOne')} label={`${optionOne.votes.length} out of ${totalVotes()}`} />
+                                                    {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
+                                                    fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                            </>
+                                        )}
                                     </div>
                                 </Container>
                             </Row>
@@ -104,10 +108,14 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                                 <Container className={secondQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
                                                 borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
                                     <div onClick={(e) => vote(e, 2)} style={{ position: 'relative' }}>
-                                        <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
-                                        <ProgressBar now={totalVotesPercentage('optionTwo')} label={`${optionTwo.votes.length} out of ${totalVotes()}`} />
-                                        {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
-                                            fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                        <h4>2. {optionTwo.text} {hasVoted() && (<>({totalVotesPercentage('optionTwo')}%)</>)}</h4>
+                                        {hasVoted() && (
+                                            <>
+                                                <ProgressBar now={totalVotesPercentage('optionTwo')} label={`${optionTwo.votes.length} out of ${totalVotes()}`} />
+                                                    {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
+                                                    fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                            </>
+                                        )}
                                     </div>
                                 </Container>
                             </Row>
@@ -116,6 +124,7 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                     <br />
                 </Card.Header>
                 <Card.Body>
+                    <hr />
                     <button className='btn btn-secondary m-1' title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/questions/${id}`))} disabled={params.id === id || authedUser === null}>
                         <FaArrowRight size='25px' />
                     </button>
