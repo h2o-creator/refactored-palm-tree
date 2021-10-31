@@ -3,6 +3,7 @@ import {
     _getQuestions,
     _saveQuestion,
     _saveQuestionAnswer,
+    _authenticateUser,
 } from './_DATA'
 
 export function getInitialData() {
@@ -27,4 +28,8 @@ export function saveQuestion(question) {
 
 export function saveQuestionAnswer(questionAnswer) {
     return _saveQuestionAnswer(questionAnswer)
+}
+
+export function authenticateUser(userData) {
+    return _authenticateUser(userData)
 }

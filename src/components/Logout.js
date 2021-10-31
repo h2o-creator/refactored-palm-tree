@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
-import setAuthedUser from '../actions/setAuthedUser'
+import { setAuthedUser } from '../actions/setAuthedUser'
 
 function Logout({ dispatch, loading, authedUser, users }) {
     return (loading === 0 && authedUser !== null) && (

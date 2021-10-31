@@ -5,20 +5,25 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
-import setAuthedUser from '../actions/setAuthedUser'
+import handleSetAuthedUser from '../actions/setAuthedUser'
 import { FaUserCircle, FaArrowRight } from 'react-icons/fa'
 import { withRouter } from 'react-router-dom'
 
-function Login({ dispatch, users, history }) {
+function Login({ dispatch, users, history, authedUser }) {
+    if (authedUser !== null) {
+        history.push('/')
+    }
+
     const [selectedUser, setUser] = useState(undefined)
+    const [password, setPassword] = useState('')
     let userAvatar = useRef(null)
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (selectedUser === 'undefined' || selectedUser === undefined) {
+        if (selectedUser === 'undefined' || selectedUser === undefined || password === undefined || password === '') {
             return false
         }
-        dispatch(setAuthedUser(selectedUser))
+        dispatch(handleSetAuthedUser({ user: selectedUser, password }))
         history.push('/')
     }
 
@@ -52,9 +57,13 @@ function Login({ dispatch, users, history }) {
                                     <option value={user.id} key={user.id}>
                                         {user.name}
                                     </option>
-                                ))}</Form.Select>
+                                ))}
+                            </Form.Select>
                             <br />
-                            <Button type='submit' variant='primary' disabled={selectedUser === 'undefined' || selectedUser === undefined}>
+                            <Form.Control className='bg-dark text-light' type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Type your password here' />
+                            <br />
+                            <Button type='submit' variant='primary' disabled={selectedUser === 'undefined' || selectedUser === undefined || password === undefined
+                                    || password === ''}>
                                 Login <FaArrowRight />
                             </Button>
                         </Form.Group>
@@ -65,9 +74,10 @@ function Login({ dispatch, users, history }) {
     )
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
     return {
-        users: Object.values(users)
+        users: Object.values(users),
+        authedUser,
     }
 }
 

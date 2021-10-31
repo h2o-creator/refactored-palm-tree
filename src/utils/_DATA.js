@@ -18,7 +18,8 @@ let users = {
 			"am8ehyc8byjqgar0jgpub9": 'optionTwo',
 			"loxhs1bqm25b708cmbf3g": 'optionTwo'
 		},
-		questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+		questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9'],
+		password: '12345',
 	},
 	tylermcginnis: {
 		id: 'tylermcginnis',
@@ -29,6 +30,7 @@ let users = {
 			"xj352vofupe1dqz9emx13r": 'optionTwo',
 		},
 		questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
+		password: '12345',
 	},
 	johndoe: {
 		id: 'johndoe',
@@ -40,6 +42,7 @@ let users = {
 			"6ni6ok3ym7mf1p33lnez": 'optionTwo'
 		},
 		questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+		password: '12345',
 	}
 }
 
@@ -188,4 +191,11 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 			res()
 		}, 500)
 	})
+}
+
+export function _authenticateUser({ user, password }) {
+	return new Promise((res, rej) => setTimeout(() => res(
+			Object.keys(users).includes(user) && users[user].password === password
+		), 500)
+	)
 }
