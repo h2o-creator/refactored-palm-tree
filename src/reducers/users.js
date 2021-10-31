@@ -25,15 +25,22 @@ export default function users(state = {}, action) {
         case UPDATE_VOTE: {
             const { payload } = action
             const { voteData } = payload
-            const { qid, answer, authedUser } = voteData            
+            const { qid, answer, authedUser } = voteData
+			let answers = {}
+			if (Object.keys(state[authedUser].answers).includes(qid)) {
+				for (const [key, value] of Object.entries(state[authedUser].answers)) {
+					if (key !== qid) {
+						answers = Object.assign(answers, { [key]: value })
+					}
+				}
+			} else {
+				answers = Object.assign(answers, { ...state[authedUser].answers, [qid]: answer })
+			}
             return {
                 ...state,
                 [authedUser]: {
                     ...state[authedUser],
-                    answers: {
-                        ...state[authedUser].answers,
-                        [qid]: answer,
-                    },
+                    answers,
                 }
             }
         }
@@ -45,9 +52,7 @@ export default function users(state = {}, action) {
                 ...state,
                 [author]: {
                     ...state[author],
-                    questions: state[author].questions.includes(id) ? 
-                        (state[author].questions.filter((question) => question !== id)) : 
-                        (state[author].questions.concat(id)),
+                    questions: state[author].questions.concat(id),
                 }
             }
         }
