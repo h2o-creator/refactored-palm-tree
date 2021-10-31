@@ -4,6 +4,10 @@ Would You Rather web game code-named as refactored-palm-tree created with Create
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Visuals
+
+![Refactored Palm Tree Preview](./preview/project-refactored-palm-tree-preview.gif)
+
 ## Available Scripts
 
 In the project directory, you can run:
