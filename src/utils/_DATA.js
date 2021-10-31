@@ -206,10 +206,10 @@ export function _saveUser({ id, name, password }) {
 			[id]: {
 				id,
 				name,
-				password,
 				avatarURL: generateUAvatar(id),
-				questions: {},
 				answers: {},
+				questions: {},
+				password,
 			}	
 		}
 		users = Object.assign(users, newUser)
