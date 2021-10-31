@@ -111,7 +111,7 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                     <br />
                 </Card.Header>
                 <Card.Body>
-                    <button className='btn btn-secondary m-1' title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/question/${id}`))} disabled={params.id === id || authedUser === null}>
+                    <button className='btn btn-secondary m-1' title='Go To Question' onClick={(params) => params.id !== id && (history.push(`/questions/${id}`))} disabled={params.id === id || authedUser === null}>
                         <FaArrowRight size='25px' />
                     </button>
                     <button className='btn btn-secondary m-1' title='Vote for first' onClick={(e) => vote(e, 1)} disabled={authedUser === null || hasVotedSecond()}>

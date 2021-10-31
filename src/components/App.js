@@ -37,7 +37,7 @@ function App({ dispatch, loading, authedUser }) {
 					<Route exact path='/'>
 						<Dashboard />
 					</Route>
-					<Route path='/question/:id'>
+					<Route path={['/question/:id', '/questions/:id']}>
 						{(authedUser === null) ? (
 							<Redirect to='/login' />
 						) : (
@@ -47,7 +47,7 @@ function App({ dispatch, loading, authedUser }) {
 					<Route path='/login'>
 						<ForceLogin />
 					</Route>
-					<Route path='/new-question'>
+					<Route path={['/new-question', '/add']}>
 						{(authedUser === null) ? (
 							<Redirect to='/login' />
 						) : (

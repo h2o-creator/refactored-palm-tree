@@ -25,7 +25,7 @@ function Navigation({ authedUser }) {
                             <Nav.Link as={Link} className='align-middle' to='/'>
                                 Home
                             </Nav.Link>
-                            <Nav.Link as={Link} className='align-middle' to='/new-question'>
+                            <Nav.Link as={Link} className='align-middle' to='/add'>
                                 New Question
                             </Nav.Link>
                             <Nav.Link as={Link} className='align-middle' to='/leaderboard'>
