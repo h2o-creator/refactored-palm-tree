@@ -24,7 +24,6 @@ function Login({ dispatch, users, history, authedUser }) {
             return false
         }
         dispatch(handleSetAuthedUser({ user: selectedUser, password }))
-        history.push('/')
     }
 
     function triggerUpdate(e) {
