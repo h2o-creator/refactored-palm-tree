@@ -18,23 +18,16 @@ export default function questions(state = {}, action) {
             const { voteData } = payload
             const { qid, answer, authedUser } = voteData
             const option = answer
-            const otherOption = option === 'optionOne' ? 'optionTwo' : 'optionOne'
             return {
                 ...state,
                 [qid]: {
                     ...state[qid],
                     [option]: {
                         ...state[qid][option],
-                        votes: state[qid][option].votes.includes(authedUser) ?
+                        votes: state[qid][option].votes.includes(authedUser) === true ?
                             state[qid][option].votes.filter((voter) => voter !== authedUser) :
                             state[qid][option].votes.concat(authedUser)
                     },
-                    [otherOption]: {
-                        ...state[qid][otherOption],
-                        votes: state[qid][otherOption].votes.includes(authedUser) ? 
-                            state[qid][otherOption].votes.filter((voter) => voter !== authedUser) :
-                            state[qid][otherOption].votes
-                    }
                 }
             }
         }
