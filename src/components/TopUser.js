@@ -25,7 +25,7 @@ function TopUser({ id, name, avatar, askedQuestions, answeredQuestions, totalSco
                             <h3>{`#${index} ${name}`}</h3>
                             {
                                 authedUser === id && (
-                                    <h4>It's You! 🎉🎉🏆</h4>
+                                    <h4>It's You! <span role='img' aria-label='victory-emojis'>🎉🎉🏆</span></h4>
                                 )
                             }
                         </Col>
