@@ -13,6 +13,7 @@ import { FaSadTear, FaCoffee } from 'react-icons/fa'
 import ConnectedQuestionPage from './QuestionPage'
 import ConnectedLogin from './Login'
 import ConnectedNewQuestion from './NewQuestion'
+import ConnectedNewUser from './NewUser'
 import ConnectedLeaderboard from './Leaderboard'
 
 function App({ dispatch, loading, authedUser }) {
@@ -52,6 +53,13 @@ function App({ dispatch, loading, authedUser }) {
 							<Redirect to='/login' />
 						) : (
 							<ConnectedNewQuestion />
+						) }
+					</Route>
+					<Route path={['/new-user', '/add-user']}>
+						{(authedUser === null) ? (
+							<Redirect to='/login' />
+						) : (
+							<ConnectedNewUser />
 						) }
 					</Route>
 					<Route path='/leaderboard'>

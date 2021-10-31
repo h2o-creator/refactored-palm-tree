@@ -28,6 +28,9 @@ function Navigation({ authedUser }) {
                             <Nav.Link as={Link} className='align-middle' to='/add'>
                                 New Question
                             </Nav.Link>
+                            <Nav.Link as={Link} className='align-middle' to='/add-user'>
+                                New User
+                            </Nav.Link>
                             <Nav.Link as={Link} className='align-middle' to='/leaderboard'>
                                 Leaderboard
                             </Nav.Link>
