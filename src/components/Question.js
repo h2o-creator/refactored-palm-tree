@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Alert from 'react-bootstrap/Alert'
 import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
@@ -85,29 +86,33 @@ function Question({ dispatch, author, authorAvatar, optionOne, optionTwo, timest
                             </p>
                         </Col>
                     </Row>
-                    <Row>
-                        <Container className={firstQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
-                                        borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
-                            <div onClick={(e) => vote(e, 1)} style={{ position: 'relative' }}>
-                                <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
-                                <ProgressBar now={totalVotesPercentage('optionOne')} label={`${optionOne.votes.length} out of ${totalVotes()}`} />
-                                {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
-                                    fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
-                            </div>
-                        </Container>
-                    </Row>
-                    <br />
-                    <Row>
-                        <Container className={secondQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
-                                        borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
-                            <div onClick={(e) => vote(e, 2)} style={{ position: 'relative' }}>
-                                <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
-                                <ProgressBar now={totalVotesPercentage('optionTwo')} label={`${optionTwo.votes.length} out of ${totalVotes()}`} />
-                                {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
-                                    fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
-                            </div>
-                        </Container>
-                    </Row>
+                    {authedUser !== null ? (
+                        <>
+                            <Row>
+                                <Container className={firstQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
+                                                borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
+                                    <div onClick={(e) => vote(e, 1)} style={{ position: 'relative' }}>
+                                        <h4>1. {optionOne.text} ({totalVotesPercentage('optionOne')}%)</h4>
+                                        <ProgressBar now={totalVotesPercentage('optionOne')} label={`${optionOne.votes.length} out of ${totalVotes()}`} />
+                                        {hasVotedFirst() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
+                                            fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                    </div>
+                                </Container>
+                            </Row>
+                            <br />
+                            <Row>
+                                <Container className={secondQuestionColor} style={{ border: '1px solid gray', padding: '10px', position: 'relative',
+                                                borderRadius: '5px', boxShadow: '0px 0px 1px black' }}>
+                                    <div onClick={(e) => vote(e, 2)} style={{ position: 'relative' }}>
+                                        <h4>2. {optionTwo.text} ({totalVotesPercentage('optionTwo')}%)</h4>
+                                        <ProgressBar now={totalVotesPercentage('optionTwo')} label={`${optionTwo.votes.length} out of ${totalVotes()}`} />
+                                        {hasVotedSecond() && ( <div style={{ color: 'white', backgroundColor: 'black', borderRadius: '500px', width: '60px', height: '60px', margin: '0 auto',
+                                            fontWeight: '600', position: 'absolute', bottom: '-23px', right: '-28px', padding: '5px', paddingTop: '19px', textShadow: '0px 0px 5px black', textAlign: 'center' }}><span>You</span></div> )}
+                                    </div>
+                                </Container>
+                            </Row>
+                        </>
+                    ) : <Alert>Login to know what they asked!</Alert>}
                     <br />
                 </Card.Header>
                 <Card.Body>
