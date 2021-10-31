@@ -15,7 +15,7 @@ export default function users(state = {}, action) {
                     name,
                     password,
                     avatarURL,
-                    questions: {},
+                    questions: [],
                     answers: {}
                 }
             }

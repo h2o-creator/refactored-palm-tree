@@ -208,7 +208,7 @@ export function _saveUser({ id, name, password }) {
 				name,
 				avatarURL: generateUAvatar(id),
 				answers: {},
-				questions: {},
+				questions: [],
 				password,
 			}	
 		}
