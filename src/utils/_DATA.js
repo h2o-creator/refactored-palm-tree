@@ -203,12 +203,14 @@ export function _authenticateUser({ user, password }) {
 export function _saveUser({ id, name, password }) {
 	return new Promise((res, rej) => setTimeout(() => {
 		const newUser = {
-			id,
-			name,
-			password,
-			avatarURL: generateUAvatar(id),
-			questions: {},
-			answers: {},
+			[id]: {
+				id,
+				name,
+				password,
+				avatarURL: generateUAvatar(id),
+				questions: {},
+				answers: {},
+			}	
 		}
 		users = Object.assign(users, newUser)
 		res(newUser)
