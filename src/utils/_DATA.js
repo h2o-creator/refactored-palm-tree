@@ -213,7 +213,7 @@ export function _saveUser({ id, name, password }) {
 			}	
 		}
 		users = Object.assign(users, newUser)
-		res(newUser)
+		res(newUser[id])
 	}, 500)
 	)
 }
