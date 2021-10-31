@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Visuals
 
-![Refactored Palm Tree Preview](./preview/project-refactored-palm-tree-preview.gif)
+![Refactored Palm Tree Preview](./preview/project-refactored-palm-tree-preview)
 
 ## Available Scripts
 
