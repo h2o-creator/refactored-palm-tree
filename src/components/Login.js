@@ -10,10 +10,6 @@ import { FaUserCircle, FaArrowRight } from 'react-icons/fa'
 import { withRouter } from 'react-router-dom'
 
 function Login({ dispatch, users, history, authedUser }) {
-    if (authedUser !== null) {
-        history.push('/')
-    }
-
     const [selectedUser, setUser] = useState(undefined)
     const [password, setPassword] = useState('')
     let userAvatar = useRef(null)
