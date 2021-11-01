@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
+import { ForceLogin } from './App'
 
 function PrivateRoute({ path, authedUser, children }) {
+    const location = useLocation()
 	return (
 		<Route path={path}>
 			{authedUser === null ? (
-				<Redirect to='/login' />
+				ForceLogin(location.pathname !== '/login' && (location.pathname))
 			) : (children)}
 		</Route>
 	)

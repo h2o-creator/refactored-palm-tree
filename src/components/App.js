@@ -42,9 +42,9 @@ function App({ dispatch, loading, authedUser }) {
 					<PrivateRoute path={['/question/:id', '/questions/:id']}>
 						<ConnectedQuestionPage />
 					</PrivateRoute>
-					<Route path='/login'>
-						{authedUser === null ? <ForceLogin /> : <Redirect to='/' />}
-					</Route>
+					<PrivateRoute path='/login'>
+						<Redirect to='/' />
+					</PrivateRoute>
 					<PrivateRoute path={['/new-question', '/add']}>
 						<ConnectedNewQuestion />
 					</PrivateRoute>
@@ -95,10 +95,10 @@ function ShowLoadingSpinner() {
 	)
 }
 
-function ForceLogin() {
+export function ForceLogin(location = '') {
 	return (
 		<Container align='center' fluid>
-			<ConnectedLogin />
+			<ConnectedLogin path={location.pathname} />
 		</Container>
 	)
 }

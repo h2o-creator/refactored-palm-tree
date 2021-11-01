@@ -9,17 +9,20 @@ import handleSetAuthedUser from '../actions/setAuthedUser'
 import { FaUserCircle, FaArrowRight } from 'react-icons/fa'
 import { withRouter } from 'react-router-dom'
 
-function Login({ dispatch, users, history, authedUser }) {
+function Login({ dispatch, users, history, authedUser, path }) {
     const [selectedUser, setUser] = useState(undefined)
     const [password, setPassword] = useState('')
     let userAvatar = useRef(null)
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         if (selectedUser === 'undefined' || selectedUser === undefined || password === undefined || password === '') {
             return false
         }
-        dispatch(handleSetAuthedUser({ user: selectedUser, password }))
+        await dispatch(handleSetAuthedUser({ user: selectedUser, password }))
+        if (path !== '') {
+            history.push(path)
+        }
     }
 
     function triggerUpdate(e) {
