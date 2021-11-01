@@ -15,6 +15,7 @@ import ConnectedLogin from './Login'
 import ConnectedNewQuestion from './NewQuestion'
 import ConnectedNewUser from './NewUser'
 import ConnectedLeaderboard from './Leaderboard'
+import PrivateRoute from './PrivateRoute'
 
 function App({ dispatch, loading, authedUser }) {
 
@@ -38,37 +39,21 @@ function App({ dispatch, loading, authedUser }) {
 					<Route exact path='/'>
 						<Dashboard />
 					</Route>
-					<Route path={['/question/:id', '/questions/:id']}>
-						{(authedUser === null) ? (
-							<Redirect to='/login' />
-						) : (
-							<ConnectedQuestionPage />
-						) }
-					</Route>
+					<PrivateRoute path={['/question/:id', '/questions/:id']}>
+						<ConnectedQuestionPage />
+					</PrivateRoute>
 					<Route path='/login'>
-						<ForceLogin />
+						{authedUser === null ? <ForceLogin /> : <Redirect to='/' />}
 					</Route>
-					<Route path={['/new-question', '/add']}>
-						{(authedUser === null) ? (
-							<Redirect to='/login' />
-						) : (
-							<ConnectedNewQuestion />
-						) }
-					</Route>
-					<Route path={['/new-user', '/add-user']}>
-						{(authedUser === null) ? (
-							<Redirect to='/login' />
-						) : (
-							<ConnectedNewUser />
-						) }
-					</Route>
-					<Route path='/leaderboard'>
-						{(authedUser === null) ? (
-							<Redirect to='/login' />
-						) : (
-							<ConnectedLeaderboard />
-						) }
-					</Route>
+					<PrivateRoute path={['/new-question', '/add']}>
+						<ConnectedNewQuestion />
+					</PrivateRoute>
+					<PrivateRoute path={['/new-user', '/add-user']}>
+						<ConnectedNewUser />
+					</PrivateRoute>
+					<PrivateRoute path={'/leaderboard'}>
+						<ConnectedLeaderboard />
+					</PrivateRoute>
 					<Route path='*'>
 						<PageNotFound />
 					</Route>
