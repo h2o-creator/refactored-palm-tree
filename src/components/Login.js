@@ -8,8 +8,9 @@ import { connect } from 'react-redux'
 import handleSetAuthedUser from '../actions/setAuthedUser'
 import { FaUserCircle, FaArrowRight } from 'react-icons/fa'
 import { withRouter } from 'react-router-dom'
+import { setRedirectLocation } from '../actions/setRedirectLocation'
 
-function Login({ dispatch, users, history, authedUser, path }) {
+function Login({ dispatch, users, history, authedUser, redirectLocation }) {
     const [selectedUser, setUser] = useState(undefined)
     const [password, setPassword] = useState('')
     let userAvatar = useRef(null)
@@ -20,8 +21,11 @@ function Login({ dispatch, users, history, authedUser, path }) {
             return false
         }
         await dispatch(handleSetAuthedUser({ user: selectedUser, password }))
-        if (path !== '') {
-            history.push(path)
+        if (redirectLocation !== '') {
+            history.push(redirectLocation)
+            dispatch(setRedirectLocation(''))
+        } else {
+            history.push('/')
         }
     }
 
@@ -72,10 +76,11 @@ function Login({ dispatch, users, history, authedUser, path }) {
     )
 }
 
-function mapStateToProps({ users, authedUser }) {
+function mapStateToProps({ users, authedUser, redirectLocation }) {
     return {
         users: Object.values(users),
         authedUser,
+        redirectLocation,
     }
 }
 

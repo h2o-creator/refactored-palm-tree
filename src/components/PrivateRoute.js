@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Route, useLocation } from 'react-router-dom'
-import { ForceLogin } from './App'
+import { Route, useLocation, Redirect } from 'react-router-dom'
+import { setRedirectLocation } from '../actions/setRedirectLocation'
 
-function PrivateRoute({ path, authedUser, children }) {
+function PrivateRoute({ dispatch, path, authedUser, children }) {
     const location = useLocation()
+
+    useEffect(() => {
+        if (location.pathname !== '/login') {
+            dispatch(setRedirectLocation(location.pathname))
+        }
+    }, [dispatch, location.pathname])
+
 	return (
 		<Route path={path}>
 			{authedUser === null ? (
-				ForceLogin(location.pathname !== '/login' && (location.pathname))
+				<Redirect to='/login' />
 			) : (children)}
 		</Route>
 	)

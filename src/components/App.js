@@ -7,7 +7,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.css'
 import Dashboard from './Dashboard'
 import ConnectedNavigation from './Navigation'
-import { Route, Switch, useLocation, Link, Redirect } from 'react-router-dom'
+import { Route, Switch, useLocation, Link } from 'react-router-dom'
 import Footer from './Footer'
 import { FaSadTear, FaCoffee } from 'react-icons/fa'
 import ConnectedQuestionPage from './QuestionPage'
@@ -42,9 +42,9 @@ function App({ dispatch, loading, authedUser }) {
 					<PrivateRoute path={['/question/:id', '/questions/:id']}>
 						<ConnectedQuestionPage />
 					</PrivateRoute>
-					<PrivateRoute path='/login'>
-						<Redirect to='/' />
-					</PrivateRoute>
+					<Route path='/login'>
+						<ForceLogin />
+					</Route>
 					<PrivateRoute path={['/new-question', '/add']}>
 						<ConnectedNewQuestion />
 					</PrivateRoute>
@@ -54,9 +54,9 @@ function App({ dispatch, loading, authedUser }) {
 					<PrivateRoute path={'/leaderboard'}>
 						<ConnectedLeaderboard />
 					</PrivateRoute>
-					<Route path='*'>
+					<PrivateRoute path='*'>
 						<PageNotFound />
-					</Route>
+					</PrivateRoute>
 				</Switch>
 			) : (
 				<ShowLoadingSpinner />
@@ -95,10 +95,10 @@ function ShowLoadingSpinner() {
 	)
 }
 
-export function ForceLogin(location = '') {
+export function ForceLogin() {
 	return (
 		<Container align='center' fluid>
-			<ConnectedLogin path={location.pathname} />
+			<ConnectedLogin />
 		</Container>
 	)
 }
