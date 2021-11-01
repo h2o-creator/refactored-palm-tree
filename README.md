@@ -4,6 +4,10 @@ Would You Rather web game code-named as refactored-palm-tree created with Create
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Author
+
+Abdelhady Salah
+
 ## Visuals
 
 ![Refactored Palm Tree Preview](./preview/project-refactored-palm-tree-preview)
@@ -18,6 +22,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Consists of connected components, presentational components, actions and reducers
 - The default API shipped with the project was modified to create custom avatars and to meet with the system feature demands
     i.e. Password and Avatars
+- There's a 404 page if you enter a non-existent link
 
 ## Dependencies
 
@@ -44,6 +49,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   },
 ```
 
+## Installation
+
+The project can be easily installed using:
+1. `npm install` to get all the necessary packages (mentioned above)
+2. `npm start` to start the development server
+
 ## Copyright & License
 
 (C) 2021 Abdelhady Salah Abdelkader. All Rights Reserved.
@@ -58,7 +69,7 @@ Licensed under GNU GPL v3
     - Users have auto-generated avatars based on ther id
 - Polls system
     - All the polls have the same question: Would You Rather?
-    - Polls have two options only that users can choose from
+    - Polls have two options only that users can choose from (and create, for new polls)
     - Users can ask questions and others are able to answer them (following the rules of the game)
     - Users who have voted are able to view poll results
     - Users MUST un-vote before they can vote for the other option
@@ -69,6 +80,13 @@ Licensed under GNU GPL v3
     - Trophies are given to top users (have different color and icon type)
     - Score is calculated according to: How many questions asked + answered 
     - Answered questions in the leaderboard refer to questions that have received at least 1 answer
+
+## Logging In
+
+- You can login by selecting the user you wish from the list
+- The default password for the demo users is: '12345'
+
+# Create-React-App Instructions
 
 ## Available Scripts
 
